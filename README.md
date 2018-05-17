@@ -12,30 +12,31 @@ Question 1
 
 * Database performance
   * Unlike EC2 resources, I believe database are a static entity and needs to be properly configured. The main requirement for any DB is read & write IOPS.
-  * It must be multi AZ with SSD volumes for high IOPS. Having multi AZ deployment, the HA is covered as well as horizontal scaling.
+  * It must be multi AZ with SSD volumes for high IOPS. Having multiAZ deployment, the HA is covered as well as horizontal scaling.
   * Vacuum needs to be done on the database regurlarly.
   * Apply TTL if the client application is caching the Domain Name Service (DNS) data using read replicas to horizontally scale your database.
   * Read replica in a different AWS Region closer to your users for better performance
 
 * Message Bus performance(RabbitMQ)
+  * <pending>
 
 * Docker + Kubernetes
+  * <pending>
 
 Question 2
 ----------
 
 * User Passwords(actual clients) & SysAdmin passwords
-  * I have use-case based solution based on the above question. I have implemented https://www.passbolt.com/ for the above problem.
-  We have self-hosted passbolt setup in our organisation. However, for better support and enhancement, we can use cloud based hosted solution. It is web based and easy to colloboration
-  * passbolt_docker which can stored and shared between individuals
-  https://help.passbolt.com/hosting/install/ce/docker.html
+  * I have use-case solution based on the above question. I have implemented [Passbolt][] for the above problem. We have self-hosted passbolt setup in our organisation. However, for better support and enhancement, we can use cloud based hosted solution. It is web based and easy to colloboration
+  * For shorter teams, passbolt_docker which can used store and share between individuals in the team. https://help.passbolt.com/hosting/install/ce/docker.html
 
   ![Passbolt](https://github.com/karthikholla/mission-accomplished/blob/master/images/passbolt.png)
 
 * Passwords for connections to DBs, which are used by backend services
+  * <pending>
 
 * Docker file configurations that should include passwords
-  * We make it as env in the docker or docker-compose file and  replace the env value in the jenkins file. In the jenkins server, we store the credentails. Also, we can use docker secret
+  * We make it as ENV in the Dockerfile or docker-compose file and  replace the env key with value in the jenkins file. In the jenkins server, we store the credentials. Also, we use `docker secret` command to store secrets.
 
 * SSL/Encryption Keys
   * We use AWS KMS to encrypt all the necessary AWS resources.
@@ -59,8 +60,10 @@ Question 3
   * command sudo export DOCKER_CONTENT_TRUST=1. Now when you attempt to pull down an image that isn't signed, Docker will inform you
 
 * General infrastructure
+  * <pending>
 
 * Data
+  * <pending>
 
 
 Question 4
@@ -86,12 +89,15 @@ Question 6
 ----------
 
 All developes pubkey are stored in github as a code. During the infra creation the depending on the project particular team’s pubkey are replaced in the script to provide the ssh access.
-Shell script to granting ssh access to servers
 
-`useradd developer;usermod -s /bin/bash developer;mkdir -p /home/developer/.ssh;echo "<pub_key_here>" > /home/developer/.ssh/authorized_keys;chmod 600 /home/developer/.ssh/authorized_keys;chmod 700 /home/developer/.ssh;chown -R developer:developer /home/developer;`
+* Shell script to granting ssh access to servers
 
-Since we are towardw immutable infra., there is no need for revoking access. However., we can remove
+  `useradd developer;usermod -s /bin/bash developer;mkdir -p /home/developer/.ssh;echo "<pub_key_here>" > /home/developer/.ssh/authorized_keys;chmod 600 /home/developer/.ssh/authorized_keys;chmod 700 /home/developer/.ssh;chown -R developer:developer /home/developer;`
 
-`deluser --remove-home developer`
+Since we are moving towards immutable infrastructure, there is no need for revoking access. However, we can remove
 
-Optionally you can remove --remove-all-files
+  `deluser --remove-home developer`
+
+Optionally you can remove `--remove-all-files` to remove all the files owned by that user,
+
+[Passbolt]: https://www.passbolt.com/
