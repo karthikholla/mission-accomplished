@@ -30,6 +30,8 @@ Question 2
   * passbolt_docker which can stored and shared between individuals
   https://help.passbolt.com/hosting/install/ce/docker.html
 
+  ![Passbolt](https://github.com/karthikholla/mission-accomplished/blob/master/images/passbolt.png)
+
 * Passwords for connections to DBs, which are used by backend services
 
 * Docker file configurations that should include passwords
@@ -72,7 +74,7 @@ Question 4
 To Accomplish this we are using Cloudwatch logs instead of logstash. Installed cloudwatch agent on the host machine to push the all system logs to the CW and using awslogs docker logging driver to push the application logs.
 
 * Application Logs
- * Using filbeat env variable, all the application logs is directly ingested to AWS ES. Using awslogs logging driver, push the logs to the CW group and then push it to ES.
+  * Using filbeat env variable, all the application logs is directly ingested to AWS ES. Using awslogs logging driver, push the logs to the CW group and then push it to ES.
 
 * System Logs
   * Install CW logs agents & use it to push system logs. successfully pushed the syslog & ossec.log to ES via filebeat docker, But, by pushing the system logs directly to ES directly, the filters/grok cannot be imposed on the logs.
