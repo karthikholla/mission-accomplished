@@ -77,7 +77,7 @@ To Accomplish this we are using Cloudwatch logs instead of logstash. Installed c
 * System Logs
   * Install CW logs agents & use it to push system logs. successfully pushed the syslog & ossec.log to ES via filebeat docker, But, by pushing the system logs directly to ES directly, the filters/grok cannot be imposed on the logs.
 
-![Image of Architecture](https://karthikholla.github.com/images/diagram1.png)
+![Image of Architecture](https://github.com/karthikholla/mission-accomplished/blob/master/images/diagram1.png)
 
 
 Question 6
