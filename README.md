@@ -5,15 +5,15 @@ Question 1
 ----------
 
 * Backend servers
-  * There are 2 types. Horizontal and vertical scaling. Horizontal scaling common approach when running on the cloud, leveraging it commodity hardware. It is the most preferred way of scaling.
-  * Auto Scaling Groups in AWS
-  * You could define the minimum and maximum size and assign a scaling policy and metric to trigger the elasticity. Some of the sample metrics are CPU, Queue length, Network IO.
-  * You can use Application LB or Network LB
+  * Horizontal and vertical scaling.
+  * Auto Scaling Groups in AWS. Horizontal scaling common approach when running on the cloud, leveraging it commodity hardware. It is the most preferred way of scaling.
+  * You could define the minimum and maximum size to scale in Auto Scaling Groups and assign a scaling policy and metric to trigger the elasticity. Some of the sample metrics are CPU, Queue length, Network IO.
+  * You can use Application LB or Network LB on the path redirect.
 
 * Database performance
-  * Unlike EC2 resources, I believe database are a static entity and needs to be properly configured. The main requirement for any DB is read & write IOPS.
-  * It must be multi AZ with SSD volumes for high IOPS. Having multiAZ deployment, the HA is covered as well as horizontal scaling.
-  * Vacuum needs to be done on the database regurlarly.
+  * Unlike EC2 resources, I believe database are a static entity and needs to be properly configured in the first place. The main requirement for any DB is read & write IOPS.
+  * It must be multi AZ with SSD volumes for high IOPS. Having multiAZ deployment, the HA is covered.
+  * [Vacuum][] needs to be done on the database regurlarly.
   * Apply TTL if the client application is caching the Domain Name Service (DNS) data using read replicas to horizontally scale your database.
   * Read replica in a different AWS Region closer to your users for better performance
 
@@ -39,7 +39,7 @@ Question 2
   * We make it as ENV in the Dockerfile or docker-compose file and  replace the env key with value in the jenkins file. In the jenkins server, we store the credentials. Also, we use `docker secret` command to store secrets.
 
 * SSL/Encryption Keys
-  * We use AWS KMS to encrypt all the necessary AWS resources.
+  * We use AWS Certificate manager for SSL and AWS KMS to encrypt all the necessary AWS resources.
 
 Question 3
 ----------
@@ -101,3 +101,4 @@ Since we are moving towards immutable infrastructure, there is no need for revok
 Optionally you can remove `--remove-all-files` to remove all the files owned by that user,
 
 [Passbolt]: https://www.passbolt.com/
+[Vacuum]: https://github.com/awsdocs/amazon-rds-user-guide/blob/master/doc_source/CHAP_BestPractices.md#working-with-the-postgresql-autovacuum-feature
