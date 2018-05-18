@@ -95,17 +95,17 @@ We use Cloudwatch logs instead of logstash as a place holder for the logs. Insta
 Question 6
 ----------
 
-All developers pubkey are stored in github as a code. During the infra creation the depending on the particular project team’s pubkey are replaced in the script to provide the ssh access.
+All new developers are instructed to upload their pubkey to the github repo wrt their team. All developers pubkey are stored in github as a code. During the infrastructure creation ie., ec2 provisioning, the depending on the particular project team’s pubkey are replaced in the script below to provide the ssh access.
 
 * Shell script to granting ssh access to servers
 
   `useradd developer;usermod -s /bin/bash developer;mkdir -p /home/developer/.ssh;echo "<pub_key_here>" > /home/developer/.ssh/authorized_keys;chmod 600 /home/developer/.ssh/authorized_keys;chmod 700 /home/developer/.ssh;chown -R developer:developer /home/developer;`
 
-Since we are moving towards immutable infrastructure, there is no need for revoking access. However, we can remove
+Since we are moving towards immutable infrastructure, there is no need for revoking access manually. We just remove the developer's pubkey from the group, so that during the ec2 creation automatically the developer lose SSH access. However, we can remove
 
   `deluser --remove-home developer`
 
-Optionally you can remove `--remove-all-files` to remove all the files owned by that user,
+Optionally you can remove `--remove-all-files` to remove all the files owned by that user. We could setup the Jenkins job for automating the deletion process from all the VM's.
 
 [Passbolt]: https://www.passbolt.com/
 [Vacuum]: https://github.com/awsdocs/amazon-rds-user-guide/blob/master/doc_source/CHAP_BestPractices.md#working-with-the-postgresql-autovacuum-feature
