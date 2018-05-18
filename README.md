@@ -25,6 +25,7 @@ Question 1
 
 * Docker + Kubernetes
   * Docker-swarm
+  * We don't use k8s at production grade.
 
 Question 2
 ----------
@@ -64,7 +65,11 @@ Question 3
   * command `sudo export DOCKER_CONTENT_TRUST=1` warns when you attempt to pull down an image that isn't signed, Docker will inform you.
 
 * General infrastructure
-  * <pending>
+  * Confined VPC
+  * Firewalls in the form of security Groups
+  * Applications are deployed on hardened servers. Also, Patching the ec2 machines regularly.
+  * Monitor system for any changes or intrusion.
+  Ref: [AWS_Security_Best_Practices][]
 
 * Data
   * <pending>
@@ -105,3 +110,4 @@ Optionally you can remove `--remove-all-files` to remove all the files owned by 
 [Passbolt]: https://www.passbolt.com/
 [Vacuum]: https://github.com/awsdocs/amazon-rds-user-guide/blob/master/doc_source/CHAP_BestPractices.md#working-with-the-postgresql-autovacuum-feature
 [Docker-control-groups]: https://docs.docker.com/engine/security/security/
+[AWS_Security_Best_Practices]: https://d1.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf
