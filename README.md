@@ -75,13 +75,11 @@ Question 4
 * DBs
 * Message Bus
 
-To Accomplish this we are using Cloudwatch logs instead of logstash. Installed cloudwatch agent on the host machine to push the all system logs to the CW and using awslogs docker logging driver to push the application logs.
-
+We use Cloudwatch logs instead of logstash as a place holder for the logs. Installed cloudwatch agent on the host machine to push the all system logs to the Cloudwatch. We use **awslogs docker logging driver** to push the application logs from the docker containers.
 * Application Logs
-  * Using filbeat env variable, all the application logs is directly ingested to AWS ES. Using awslogs logging driver, push the logs to the CW group and then push it to ES.
-
+  * Some application use filbeat env variable in the application to push all the application logs is directly ingested to AWS ES. Few doceker applications use **awslogs docker logging driver**, push the logs to the Cloudwatch group and then push it to ES.
 * System Logs
-  * Install CW logs agents & use it to push system logs. successfully pushed the syslog & ossec.log to ES via filebeat docker, But, by pushing the system logs directly to ES directly, the filters/grok cannot be imposed on the logs.
+  * Install Cloudwatch logs agents & use it to push system logs - syslog, ossec.log and other necessary system logs.
 
 ![Image of Architecture](https://github.com/karthikholla/mission-accomplished/blob/master/images/diagram2.png)
 
