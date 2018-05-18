@@ -84,16 +84,13 @@ Question 4
 * Message Bus
 
 We use Cloudwatch logs instead of logstash as a place holder for the logs. Installed cloudwatch agent on the host machine to push the all system logs to the Cloudwatch. We use **awslogs docker logging driver** to push the application logs from the docker containers.
-* Application Logs (**Frontend, BackEnd**)
+* Application Logs (**Frontend, BackEnd, Message Bus**)
   * Some application use filbeat env variable in the application to push all the application logs is directly ingested to AWS ES. Few doceker applications use **awslogs docker logging driver**, push the logs to the Cloudwatch group and then push it to ES.
 * System Logs
   * Install Cloudwatch logs agents & use it to push system logs - syslog, ossec.log and other necessary system logs.
 ![Image of Architecture](https://github.com/karthikholla/mission-accomplished/blob/master/images/diagram2.png)
 * DB
   * Postgres RDS and redshift logs are monitored through cloudwatch.
-* Message Bus
-  * <pending>
-
 
 Question 6
 ----------
