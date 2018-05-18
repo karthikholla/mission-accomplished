@@ -45,19 +45,20 @@ Question 3
 ----------
 
 * Postgres SQL
-  * Grant users the minimum access they require to do their work, nothing more;
+  * Grant users the minimum access they require to do their work, nothing more.
   * Isolate the database port from other network traffic.
-  * Set appropriate monitoring and logging for database queries
+  * Set appropriate monitoring and logging for database queries.
   * Restrict access to configuration files (postgresql.conf and pg_hba.conf)
-  * Keep backups, and have a tested recovery plan
-  * AAA model
-  * Have AWS WAF to avoid sql injections threats
+  * Keep backups, and have a tested recovery plan.
+  * AAA model.
+  * Have AWS WAF to avoid sql injections threats.
 
 * Docker + Kubernetes
-  * Docker containers with the -u flag so that they run as an ordinary user instead of root
-  * Configure Docker control groups
-  * Use namespaces in Docker to isolate containers repos you don’t trust. In particular, avoid public repos
-  * command sudo export DOCKER_CONTENT_TRUST=1. Now when you attempt to pull down an image that isn't signed, Docker will inform you
+  * Docker containers with the -u flag so that they run as an ordinary user instead of root.
+  * Configure [Docker-control-groups][]
+  * Use namespaces in Docker to isolate containers.
+  * Avoid use of repos you don’t trust. In particular, avoid public repos.
+  * command `sudo export DOCKER_CONTENT_TRUST=1` warns when you attempt to pull down an image that isn't signed, Docker will inform you.
 
 * General infrastructure
   * <pending>
@@ -102,3 +103,4 @@ Optionally you can remove `--remove-all-files` to remove all the files owned by 
 
 [Passbolt]: https://www.passbolt.com/
 [Vacuum]: https://github.com/awsdocs/amazon-rds-user-guide/blob/master/doc_source/CHAP_BestPractices.md#working-with-the-postgresql-autovacuum-feature
+[Docker-control-groups]: https://docs.docker.com/engine/security/security/
