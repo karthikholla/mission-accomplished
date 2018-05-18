@@ -105,7 +105,9 @@ Since we are moving towards immutable infrastructure, there is no need for revok
 
   `deluser --remove-home developer`
 
-Optionally you can remove `--remove-all-files` to remove all the files owned by that user. We could setup the Jenkins job for automating the deletion process from all the VM's.
+Optionally you can use `--remove-all-files` to remove all the files owned by that user. We could setup the Jenkins job for automating the deletion process from all the VM's.
+
+![SSHflow](https://github.com/karthikholla/mission-accomplished/blob/master/images/ssh.png)
 
 [Passbolt]: https://www.passbolt.com/
 [Vacuum]: https://github.com/awsdocs/amazon-rds-user-guide/blob/master/doc_source/CHAP_BestPractices.md#working-with-the-postgresql-autovacuum-feature
