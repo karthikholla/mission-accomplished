@@ -18,10 +18,13 @@ Question 1
   * Read replica in a different AWS Region closer to your users for better performance
 
 * Message Bus performance(RabbitMQ)
-  * <pending>
+  * One way to have load balancer to connect to many nodes. Having this when multiple nodes are attached to increase the throughput.
+  * Load balance by adjusting the distribution of publishers and consumers.
+  * Exchange-to-exchange bindings improve decoupling, increase topology flexibility
+  * More Worker Queues help parallelize and distribute workloads and  Distributing worker queues in the cluster helps scale.
 
 * Docker + Kubernetes
-  * <pending>
+  * Docker-swarm
 
 Question 2
 ----------
