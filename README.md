@@ -37,7 +37,12 @@ Question 2
   ![Passbolt](https://github.com/karthikholla/mission-accomplished/blob/master/images/passbolt.png)
 
 * Passwords for connections to DBs, which are used by backend services
-  * <pending>
+  * Database URL credentials as stored in the jenkins ENV variable., which is replaced into the actual connection string in the jenkinsfile.
+  Eg:
+  `withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'Application-XYZ' ,usernameVariable: 'env_1', passwordVariable: 'env_2']]) {
+   sh 'sed -i "s&<% ENV_1 %>&$env_1&g" .build/env'
+   sh 'sed -i "s&<% ENV_2 %>&$env_2&g" .build/env'
+ }`
 
 * Docker file configurations that should include passwords
   * We make it as ENV in the Dockerfile or docker-compose file and  replace the env key with value in the jenkins file. In the jenkins server, we store the credentials. Also, we use `docker secret` command to store secrets.
@@ -64,16 +69,12 @@ Question 3
   * Avoid use of repos you don’t trust. In particular, avoid public repos.
   * command `sudo export DOCKER_CONTENT_TRUST=1` warns when you attempt to pull down an image that isn't signed, Docker will inform you.
 
-* General infrastructure
+* General infrastructure & Data
   * Confined VPC
   * Firewalls in the form of security Groups
   * Applications are deployed on hardened servers. Also, Patching the ec2 machines regularly.
   * Monitor system for any changes or intrusion.
   Ref: [AWS_Security_Best_Practices][]
-
-* Data
-  * <pending>
-
 
 Question 4
 ----------
